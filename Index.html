@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="RV Sports: FC Champions — Football Life Simulator">
+  <title>RV Sports: FC Champions</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main id="app">
+
+  <!-- =========================================================
+       RV SPORTS: FC CHAMPIONS
+       INDEX / GAME FLOW
+       Loading → Start Dashboard → Character Creation → Main Game
+       Creator/Admin tetap disediakan sebagai hidden developer access.
+       ========================================================= -->
+
+  <!-- 01. LOADING SCREEN -->
+  <section id="loading-screen" class="screen screen-loading active">
+    <div class="loading-background">
+      <div class="loading-orb orb-one"></div>
+      <div class="loading-orb orb-two"></div>
+      <div class="loading-grid"></div>
+    </div>
+
+    <div class="loading-content">
+      <div class="brand-mark">
+        <span class="brand-rv">RV</span>
+        <span class="brand-sports">SPORTS</span>
+      </div>
+
+      <h1>FC CHAMPIONS</h1>
+      <p class="loading-subtitle">FOOTBALL LIFE SIMULATOR</p>
+
+      <div class="loading-player-placeholder">
+        <div class="player-silhouette"></div>
+      </div>
+
+      <div class="loading-status">
+        <span id="loading-status-text">Initializing Football Universe...</span>
+        <strong id="loading-percent">1%</strong>
+      </div>
+
+      <div class="loading-bar">
+        <div id="loading-progress" class="loading-progress"></div>
+      </div>
+
+      <p id="loading-tip" class="loading-tip">
+        Building your football world...
+      </p>
+    </div>
+  </section>
+
+
+  <!-- 02. START DASHBOARD -->
+  <section id="dashboard-screen" class="screen screen-dashboard">
+    <div class="dashboard-bg"></div>
+
+    <div class="dashboard-card">
+      <div class="dashboard-brand">
+        <span>RV SPORTS</span>
+        <h1>FC CHAMPIONS</h1>
+        <p>FOOTBALL LIFE SIMULATOR</p>
+      </div>
+
+      <div class="dashboard-form">
+        <label for="dashboard-email">EMAIL</label>
+        <input
+          id="dashboard-email"
+          type="email"
+          placeholder="your@email.com"
+          autocomplete="email"
+        >
+
+        <label for="dashboard-name">NAME</label>
+        <input
+          id="dashboard-name"
+          type="text"
+          placeholder="Your name"
+          maxlength="30"
+          autocomplete="name"
+        >
+
+        <button id="start-game-btn" class="primary-btn" type="button">
+          START GAME
+        </button>
+      </div>
+
+      <div class="dashboard-footer">
+        <span>RV SPORTS</span>
+        <span>FC CHAMPIONS</span>
+      </div>
+
+      <!-- Hidden until admin system is implemented in main.js -->
+      <button
+        id="admin-recovery-btn"
+        class="admin-recovery-btn"
+        type="button"
+        title="Creator / Developer access"
+      >
+        🔐 ADMIN RECOVERY
+      </button>
+    </div>
+  </section>
+
+
+  <!-- 03. CHARACTER CREATION -->
+  <section id="character-screen" class="screen screen-character">
+
+    <header class="creation-header">
+      <div>
+        <span class="eyebrow">NEW CAREER</span>
+        <h1>Create Your Footballer</h1>
+        <p>Create the player who will write his own football history.</p>
+      </div>
+
+      <div class="creation-step">
+        <span>STEP</span>
+        <strong>01</strong>
+        <small>PLAYER</small>
+      </div>
+    </header>
+
+    <div class="creation-layout">
+
+      <!-- EMPTY PLAYER CARD -->
+      <aside class="player-card-wrapper">
+
+        <div id="player-card" class="player-card card-empty">
+          <div class="card-shine"></div>
+
+          <div class="card-top">
+            <div class="card-rating">
+              <strong id="card-ovr">--</strong>
+              <span>OVR</span>
+            </div>
+
+            <div class="card-position">
+              <strong id="card-position">--</strong>
+            </div>
+          </div>
+
+          <div class="card-photo-area">
+            <div class="card-photo-placeholder">
+              <span>PLAYER</span>
+              <small>PHOTO</small>
+            </div>
+          </div>
+
+          <div class="card-info">
+            <span id="card-country">COUNTRY</span>
+            <h2 id="card-name">YOUR NAME</h2>
+            <p id="card-shirt-name">SURNAME</p>
+          </div>
+
+          <div class="card-stats">
+            <div><span>PAC</span><strong id="card-pac">--</strong></div>
+            <div><span>SHO</span><strong id="card-sho">--</strong></div>
+            <div><span>PAS</span><strong id="card-pas">--</strong></div>
+            <div><span>DRI</span><strong id="card-dri">--</strong></div>
+            <div><span>DEF</span><strong id="card-def">--</strong></div>
+            <div><span>PHY</span><strong id="card-phy">--</strong></div>
+          </div>
+
+          <div class="card-footer">
+            <span>RV SPORTS</span>
+            <span id="card-card-type">PLAYER CARD</span>
+          </div>
+        </div>
+
+        <button id="gacha-stats-btn" class="secondary-btn" type="button">
+          GACHA STATS
+        </button>
+
+        <p id="gacha-hint" class="small-hint">
+          Generate your starting attributes.
+        </p>
+      </aside>
+
+
+      <!-- CHARACTER FORM -->
+      <div class="creation-panel">
+
+        <!-- IDENTITY -->
+        <div class="panel-section">
+          <div class="section-heading">
+            <span class="section-number">01</span>
+            <div>
+              <h2>Identity</h2>
+              <p>Your footballer's basic identity.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+
+            <div class="field field-wide">
+              <label for="player-name">FULL NAME</label>
+              <input
+                id="player-name"
+                type="text"
+                placeholder="Enter full name"
+                maxlength="40"
+              >
+            </div>
+
+            <div class="field">
+              <label for="player-shirt-name">SHIRT NAME</label>
+              <input
+                id="player-shirt-name"
+                type="text"
+                placeholder="Surname"
+                maxlength="15"
+              >
+            </div>
+
+            <div class="field">
+              <label for="player-birth-date">DATE OF BIRTH</label>
+              <input id="player-birth-date" type="date">
+            </div>
+
+            <div class="field">
+              <label for="player-birth-place">PLACE OF BIRTH</label>
+              <input
+                id="player-birth-place"
+                type="text"
+                placeholder="City"
+                maxlength="40"
+              >
+            </div>
+
+            <div class="field">
+              <label for="player-country">NATIONALITY</label>
+              <select id="player-country">
+                <option value="">Select country</option>
+                <option>Indonesia</option>
+                <option>England</option>
+                <option>Spain</option>
+                <option>France</option>
+                <option>Germany</option>
+                <option>Italy</option>
+                <option>Netherlands</option>
+                <option>Portugal</option>
+                <option>Brazil</option>
+                <option>Argentina</option>
+                <option>Japan</option>
+                <option>South Korea</option>
+                <option>China</option>
+                <option>United States</option>
+                <option>Canada</option>
+                <option>Mexico</option>
+                <option>Russia</option>
+                <option>Turkey</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="player-height">HEIGHT (CM)</label>
+              <input
+                id="player-height"
+                type="number"
+                min="150"
+                max="220"
+                placeholder="180"
+              >
+            </div>
+
+            <div class="field">
+              <label for="player-weight">WEIGHT (KG)</label>
+              <input
+                id="player-weight"
+                type="number"
+                min="45"
+                max="130"
+                placeholder="75"
+              >
+            </div>
+
+            <div class="field">
+              <label for="player-foot">PREFERRED FOOT</label>
+              <select id="player-foot">
+                <option value="">Select foot</option>
+                <option value="Right">Right</option>
+                <option value="Left">Left</option>
+                <option value="Both">Both</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- POSITION -->
+        <div class="panel-section">
+          <div class="section-heading">
+            <span class="section-number">02</span>
+            <div>
+              <h2>Football Profile</h2>
+              <p>Choose your football position.</p>
+            </div>
+          </div>
+
+          <div class="position-grid" id="position-grid">
+
+            <button class="position-option" data-position="GK" type="button">
+              <strong>GK</strong><span>Goalkeeper</span>
+            </button>
+
+            <button class="position-option" data-position="RB" type="button">
+              <strong>RB</strong><span>Right Back</span>
+            </button>
+
+            <button class="position-option" data-position="CB" type="button">
+              <strong>CB</strong><span>Centre Back</span>
+            </button>
+
+            <button class="position-option" data-position="LB" type="button">
+              <strong>LB</strong><span>Left Back</span>
+            </button>
+
+            <button class="position-option" data-position="RWB" type="button">
+              <strong>RWB</strong><span>Right Wing Back</span>
+            </button>
+
+            <button class="position-option" data-position="LWB" type="button">
+              <strong>LWB</strong><span>Left Wing Back</span>
+            </button>
+
+            <button class="position-option" data-position="CDM" type="button">
+              <strong>CDM</strong><span>Defensive Midfielder</span>
+            </button>
+
+            <button class="position-option" data-position="CM" type="button">
+              <strong>CM</strong><span>Central Midfielder</span>
+            </button>
+
+            <button class="position-option" data-position="CAM" type="button">
+              <strong>CAM</strong><span>Attacking Midfielder</span>
+            </button>
+
+            <button class="position-option" data-position="RW" type="button">
+              <strong>RW</strong><span>Right Winger</span>
+            </button>
+
+            <button class="position-option" data-position="LW" type="button">
+              <strong>LW</strong><span>Left Winger</span>
+            </button>
+
+            <button class="position-option" data-position="ST" type="button">
+              <strong>ST</strong><span>Striker</span>
+            </button>
+
+          </div>
+        </div>
+
+
+        <!-- GACHA -->
+        <div class="panel-section">
+          <div class="section-heading">
+            <span class="section-number">03</span>
+            <div>
+              <h2>Starting Attributes</h2>
+              <p>Reveal your starting stats and OVR.</p>
+            </div>
+          </div>
+
+          <div class="gacha-preview">
+
+            <div>
+              <span>OVR</span>
+              <strong id="preview-ovr">--</strong>
+            </div>
+
+            <div>
+              <span>PAC</span>
+              <strong id="preview-pac">--</strong>
+            </div>
+
+            <div>
+              <span>SHO</span>
+              <strong id="preview-sho">--</strong>
+            </div>
+
+            <div>
+              <span>PAS</span>
+              <strong id="preview-pas">--</strong>
+            </div>
+
+            <div>
+              <span>DRI</span>
+              <strong id="preview-dri">--</strong>
+            </div>
+
+            <div>
+              <span>DEF</span>
+              <strong id="preview-def">--</strong>
+            </div>
+
+            <div>
+              <span>PHY</span>
+              <strong id="preview-phy">--</strong>
+            </div>
+
+          </div>
+
+          <p class="gacha-note">
+            Your card rarity and border will be determined by your OVR.
+          </p>
+        </div>
+
+
+        <!-- STARTING PATH -->
+        <div class="panel-section">
+          <div class="section-heading">
+            <span class="section-number">04</span>
+            <div>
+              <h2>Starting Path</h2>
+              <p>Choose how your professional journey begins.</p>
+            </div>
+          </div>
+
+          <div class="path-grid" id="path-grid">
+
+            <button class="path-option" data-path="academy" type="button">
+              <strong>ACADEMY PROSPECT</strong>
+              <span>Begin your journey in a youth academy.</span>
+            </button>
+
+            <button class="path-option" data-path="local" type="button">
+              <strong>LOCAL CLUB</strong>
+              <span>Start senior football at a smaller club.</span>
+            </button>
+
+            <button class="path-option" data-path="european" type="button">
+              <strong>EUROPEAN ACADEMY</strong>
+              <span>Enter a competitive European development system.</span>
+            </button>
+
+            <button class="path-option" data-path="wonderkid" type="button">
+              <strong>WONDERKID</strong>
+              <span>A high-expectation route with bigger pressure.</span>
+            </button>
+
+          </div>
+        </div>
+
+
+        <div class="creation-actions">
+          <button id="reroll-stats-btn" class="secondary-btn" type="button">
+            REROLL
+          </button>
+
+          <button id="create-player-btn" class="primary-btn" type="button">
+            CREATE PLAYER
+          </button>
+        </div>
+
+        <p id="creation-message" class="form-message" role="status"></p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 04. MAIN GAME DASHBOARD -->
+  <section id="game-screen" class="screen screen-game">
+
+    <header class="game-header">
+      <div class="game-brand">
+        <span>RV SPORTS</span>
+        <strong>FC CHAMPIONS</strong>
+      </div>
+
+      <div class="game-player-mini">
+        <span id="game-player-name">PLAYER</span>
+        <strong id="game-player-ovr">-- OVR</strong>
+      </div>
+    </header>
+
+    <div class="game-dashboard">
+      <div class="dashboard-welcome">
+        <span>WELCOME TO THE FOOTBALL WORLD</span>
+        <h1 id="game-welcome-name">Your Career Starts Here</h1>
+        <p>Your main Football Life dashboard will be built here.</p>
+      </div>
+
+      <div class="dashboard-placeholder-grid">
+        <button class="game-menu-card" data-feature="career" type="button">
+          <strong>CAREER</strong><span>Coming next</span>
+        </button>
+
+        <button class="game-menu-card" data-feature="calendar" type="button">
+          <strong>CALENDAR</strong><span>Coming next</span>
+        </button>
+
+        <button class="game-menu-card" data-feature="club" type="button">
+          <strong>CLUB</strong><span>Coming next</span>
+        </button>
+
+        <button class="game-menu-card" data-feature="national-team" type="button">
+          <strong>NATIONAL TEAM</strong><span>Coming next</span>
+        </button>
+
+        <button class="game-menu-card" data-feature="life" type="button">
+          <strong>LIFE</strong><span>Coming next</span>
+        </button>
+
+        <button class="game-menu-card" data-feature="world" type="button">
+          <strong>FOOTBALL WORLD</strong><span>Coming next</span>
+        </button>
+
+        <button class="game-menu-card" data-feature="creator" type="button">
+          <strong>CREATOR</strong><span>Developer access</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 05. CREATOR / ADMIN MODAL
+       Logic/authentication will be implemented in main.js.
+       IMPORTANT: this is a client-side developer mode for the game.
+       Do not treat it as secure authentication. -->
+  <dialog id="admin-dialog" class="admin-dialog">
+
+    <div class="admin-panel">
+
+      <div class="admin-header">
+        <div>
+          <span class="eyebrow">DEVELOPER ACCESS</span>
+          <h2>Creator Console</h2>
+          <p>Test and control the Football Universe.</p>
+        </div>
+
+        <button id="admin-close-btn" class="icon-btn" type="button" aria-label="Close">
+          ×
+        </button>
+      </div>
+
+      <div id="admin-login-area">
+
+        <label for="admin-email">CREATOR EMAIL</label>
+        <input
+          id="admin-email"
+          type="email"
+          placeholder="creator@email.com"
+          autocomplete="off"
+        >
+
+        <button id="admin-login-btn" class="primary-btn" type="button">
+          VERIFY CREATOR
+        </button>
+
+        <p id="admin-login-message" class="form-message" role="status"></p>
+      </div>
+
+
+      <div id="admin-console" class="admin-console hidden">
+
+        <div class="admin-status">
+          <span>CREATOR MODE</span>
+          <strong>ACTIVE</strong>
+        </div>
+
+        <div class="admin-grid">
+
+          <div class="admin-field">
+            <label for="admin-ovr">OVR</label>
+            <input id="admin-ovr" type="number" min="1" max="99" value="99">
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-pac">PAC</label>
+            <input id="admin-pac" type="number" min="1" max="99" value="99">
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-sho">SHO</label>
+            <input id="admin-sho" type="number" min="1" max="99" value="99">
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-pas">PAS</label>
+            <input id="admin-pas" type="number" min="1" max="99" value="99">
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-dri">DRI</label>
+            <input id="admin-dri" type="number" min="1" max="99" value="99">
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-def">DEF</label>
+            <input id="admin-def" type="number" min="1" max="99" value="99">
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-phy">PHY</label>
+            <input id="admin-phy" type="number" min="1" max="99" value="99">
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-age">AGE</label>
+            <input id="admin-age" type="number" min="1" max="100" value="18">
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-money">MONEY</label>
+            <input id="admin-money" type="number" min="0" value="1000000000">
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-fans">FANS</label>
+            <input id="admin-fans" type="number" min="0" value="1000000">
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-followers">FOLLOWERS</label>
+            <input id="admin-followers" type="number" min="0" value="1000000">
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-reputation">REPUTATION</label>
+            <input id="admin-reputation" type="number" min="0" max="100" value="90">
+          </div>
+
+        </div>
+
+        <div class="admin-actions">
+          <button id="admin-max-btn" class="danger-btn" type="button">
+            MAX EVERYTHING
+          </button>
+
+          <button id="admin-apply-btn" class="primary-btn" type="button">
+            APPLY CHANGES
+          </button>
+        </div>
+
+        <p id="admin-console-message" class="form-message" role="status"></p>
+
+      </div>
+
+    </div>
+  </dialog>
+
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
